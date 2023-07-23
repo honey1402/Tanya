@@ -1,0 +1,44 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+int Find_Kth_Smallest(vector<int> &arr, int k)
+{
+    priority_queue<int, vector<int>, less<int>> pq;
+
+    for (int num : arr)
+    {
+        pq.push(num);
+        if (pq.size() > k)
+        {
+            pq.pop(); 
+        }
+    }
+
+    return pq.top();
+}
+
+int main()
+{
+    int n, k;
+    cout << "Enter the size of the array: ";
+    cin >> n;
+    cout << "Enter the value of K: ";
+    cin >> k;
+    if (n <= 0 || k <= 0 || k > n)
+    {
+        cout << "Invalid input.\n";
+        return 1;
+    }
+    vector<int> arr(n);
+    cout << "Enter " << n << " elements: ";
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> arr[i];
+    }
+
+    int kth = Find_Kth_Smallest(arr, k);
+    cout << "The " << k << "th smallest element is: " << kth << "\n";
+
+    return 0;
+}

@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+class Values
+{
+public:
+    int x;
+    int size;
+    vector<int> a;
+    void input()
+    {
+        cout << "Enter the size: ";
+        cin >> size;
+        cout << "Enter the values: ";
+        for (int i = 0; i < size; i++)
+        {
+            cin >> x;
+            a.push_back(x);
+        }
+        sort(a.begin(), a.end());
+    }
+    int get_median()
+    {   
+        if (size % 2 == 0)
+        {
+            return (a[(size / 2) - 1] + a[(size / 2)]) / 2;
+        }
+        else
+        {
+            return a[size / 2];
+        }
+    }
+};
+
+int main()
+{
+    Values v1;
+    v1.input();
+    int median = v1.get_median();
+    cout << "The median is: " <<median << endl;
+}
